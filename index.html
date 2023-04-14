@@ -15,7 +15,7 @@
  
   XRequest(url,function(e,error){
     if(error) return console.error("source not loaded")//,setTimeout(()=>location.reload(),2000);
-    document.body.append(e)
+    document.body.innerHTML= e;
   }, true)
 </script>
 </body>
