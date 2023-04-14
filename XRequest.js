@@ -24,4 +24,4 @@ XRequest.errEv = document.createEvent("Event");
 XRequest.errEv.initEvent(name, false, false);
 XRequest.res = {};
 XRequest.resId = 0;
-XRequest.host = "https://io.cyclic.app/XRequest";
+XRequest.host = "https://x.cyclic.app/XRequest";
