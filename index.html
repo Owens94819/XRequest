@@ -11,8 +11,8 @@
 <body>
 
 <script type="text/javascript" charset="utf-8">
-  XRequest("./README.md",function(e,error){
-    if(error) return console.error("source not loaded");
+  XRequest("https://owens94819.github.io/XJSX-DEMO/README.md",function(e,error){
+    if(error) return console.error("source not loaded")//,setTimeout(()=>location.reload(),2000);
     document.body.append(e)
   }, true)
 </script>
