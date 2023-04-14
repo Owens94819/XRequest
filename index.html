@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="XRequest.js" type="text/javascript" charset="utf-8"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>XRequest.js</title>
+</head>
+
+<body>
+
+<script type="text/javascript" charset="utf-8">
+  XRequest("./README.md",function(e,error){
+    if(error) return console.error("source not loaded");
+    document.body.append(e)
+  }, true)
+</script>
+</body>
+</html>

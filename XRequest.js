@@ -1,4 +1,8 @@
 function XRequest(url, foo, blk) {
+  if ("function" !== typeof foo) {
+    console.error("callback not provided!.")
+    return
+  }
   var id = XRequest.resId++;
   var s = document.createElement("script");
   blk && (s.blocking = "render");
