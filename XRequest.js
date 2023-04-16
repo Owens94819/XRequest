@@ -4,13 +4,23 @@ function XRequest(url, foo, blk) {
     return
   }
   var id = XRequest.resId++;
-  var s = document.createElement("script");
-  blk && (s.blocking = "render");
-  s.src = url;
-  s.src = XRequest.host + "?id=" + id + "&src=" + s.src;
-  document.head.appendChild(s);
+  var s;
+  
+  url=(XRequest.script.src=url,XRequest.script.src)
+  url= XRequest.host + "?id=" + id + "&src=" + url;
 
-  XRequest.res[id] = [foo, s];
+  if (!document.currentScript||document.readyState === "complete") {
+    s = document.createElement("script");
+    blk&&(s.blocking = "render");
+   // s.fetchpriority ="high"
+    s.src = url;
+    document.head.appendChild(s);
+  }else{
+    document.write('<script src="'+url+'" xid="'+id+'" '+(blk&&'blocking="render"'||'')+'></script>')
+    s=document.querySelector('script[xid="'+id+'"]');
+    s.remove()
+  }
+  
 
   s.onerror = function () {
     XRequest.resId--;
@@ -18,10 +28,24 @@ function XRequest(url, foo, blk) {
     foo && foo("",true);
     delete XRequest.res[id];
   };
+  XRequest.res[id] = [foo, s, {
+    status:0,
+    statusText:"",
+    getResponseHeader:function() {
+     return arguments.callee.header
+    }
+  }];
+  return XRequest.res[id][2]
 }
 
-XRequest.errEv = document.createEvent("Event");
-XRequest.errEv.initEvent(name, false, false);
+XRequest.script=document.createElement("script")
+//XRequest.errEv = document.createEvent("Event");
+//XRequest.errEv.initEvent(name, false, false);
 XRequest.res = {};
 XRequest.resId = 0;
-XRequest.host = "https://x.cyclic.app/XRequest";
+XRequest.host = 
+location.host.includes("localhost")&&"http://localhost:12345/XRequest"||
+
+"https://x.cyclic.app/XRequest";
+
+
