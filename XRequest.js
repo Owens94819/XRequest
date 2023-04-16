@@ -25,10 +25,11 @@ function XRequest(url, foo, blk) {
   s.onerror = function () {
     XRequest.resId--;
     s.remove();
-    foo && foo("",true);
+    foo && XRequest.res[id][2].foo("",delete XRequest.res[id][2].foo);
     delete XRequest.res[id];
   };
   XRequest.res[id] = [foo, s, {
+    foo:foo,
     status:0,
     statusText:"",
     getResponseHeader:function() {
