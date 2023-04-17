@@ -21,6 +21,9 @@ function XRequest(url, foo, blk) {
    // s.remove()
   }
   
+  s.logger=function(msg) {
+   console.error(msg)
+  }
 
   s.onerror = function () {
     XRequest.resId--;
