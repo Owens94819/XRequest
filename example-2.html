@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="XRequest.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+  
+<h1>1</h1>
+
+<script>
+  XRequest("text-2.html", function (e, error){
+    document.body.innerHTML+=e
+  })
+</script>
+
+<h1>3</h1>
+
+</body>
+
+</html>
