@@ -46,7 +46,7 @@ XRequest.script=document.createElement("script")
 XRequest.res = {};
 XRequest.resId = 0;
 XRequest.host = 
-location.host.includes("localhost")&&"http://localhost:12345/XRequest"||
+//location.host.includes("localhost")&&"http://localhost:12345/XRequest"||
 
 "https://x.cyclic.app/XRequest";
 
