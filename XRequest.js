@@ -12,18 +12,19 @@ function XRequest(url, foo, blk) {
   if (!document.currentScript||document.readyState === "complete") {
     s = document.createElement("script");
     blk&&(s.blocking = "render");
-   // s.fetchpriority ="high"
+    s.fetchpriority ="high"
     s.src = url;
     document.head.appendChild(s);
   }else{
-    document.write('<script src="'+url+'" xid="'+id+'" '+(blk&&'blocking="render"'||'')+'></script>')
+    document.write('<script fetchpriority="high" src="'+url+'" xid="'+id+'" '+(blk&&'blocking="render"'||'')+'></script>')
     s=document.querySelector('script[xid="'+id+'"]');
-    s.remove()
+   // s.remove()
   }
   
 
   s.onerror = function () {
     XRequest.resId--;
+    
     s.remove();
     foo && XRequest.res[id][2].foo("",delete XRequest.res[id][2].foo);
     delete XRequest.res[id];
@@ -33,7 +34,7 @@ function XRequest(url, foo, blk) {
     status:0,
     statusText:"",
     getResponseHeader:function() {
-     return arguments.callee.header
+     return "";
     }
   }];
   return XRequest.res[id][2]
