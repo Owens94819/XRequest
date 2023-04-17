@@ -10,14 +10,19 @@
 
 <body>
   
+loading...
+<br/>
 <progress></progress>
 
 <script type="text/javascript" charset="utf-8">
  var url="https://owens94819.github.io/XRequest/text";
  
   XRequest(url,function(e,error){
-    if(error) return console.error("source not loaded")//,setTimeout(()=>location.reload(),2000);
-    document.body.innerHTML= e;
+    if(error) {
+      document.body.setHTML("could not load source")
+      return console.error("source not loaded")//,setTimeout(()=>location.reload(),2000);
+    }
+    document.body.setHTML(e)
   },0, true)
 </script>
 </body>
