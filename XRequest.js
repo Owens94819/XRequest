@@ -8,13 +8,16 @@ function XRequest(url, foo, blk) {
   
   url=(XRequest.script.src=url,XRequest.script.src)
   url= XRequest.host + "?id=" + id + "&src=" + url;
-
+  //location.href=url
+  if (XRequest.useImport) {
+   // import(url)
+  } else {
   if (!document.currentScript||document.readyState === "complete") {
     s = document.createElement("script");
     blk&&(s.blocking = "render");
     s.fetchpriority ="high"
     s.src = url;
-    document.head.appendChild(s);
+    (document.body||document.head).appendChild(s);
   }else{
     document.write('<script fetchpriority="high" src="'+url+'" xid="'+id+'" '+(blk&&'blocking="render"'||'')+'></script>')
     s=document.querySelector('script[xid="'+id+'"]');
@@ -27,12 +30,14 @@ function XRequest(url, foo, blk) {
 
   s.onerror = function () {
     XRequest.resId--;
-    
     s.remove();
     foo && XRequest.res[id][2].foo("",delete XRequest.res[id][2].foo);
     delete XRequest.res[id];
   };
-  XRequest.res[id] = [foo, s, {
+  }
+  
+  
+  XRequest.res[id] = [s, {
     foo:foo,
     status:0,
     statusText:"",
@@ -40,6 +45,7 @@ function XRequest(url, foo, blk) {
      return "";
     }
   }];
+  
   return XRequest.res[id][2]
 }
 
@@ -48,9 +54,11 @@ XRequest.script=document.createElement("script")
 //XRequest.errEv.initEvent(name, false, false);
 XRequest.res = {};
 XRequest.resId = 0;
-XRequest.host = 
-//location.host.includes("localhost")&&"http://localhost:12345/XRequest"||
+XRequest.host = "https://x.cyclic.app/XRequest";
 
-"https://x.cyclic.app/XRequest";
-
-
+/*
+try {
+  eval("var import;")
+} catch (e) {
+  XRequest.useImport=true;
+}*/
