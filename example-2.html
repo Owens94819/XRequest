@@ -14,25 +14,14 @@
 
 <script>
 
-//import("http://localhost:12345/XRequest?id=0&src=http://localhost:7700/text-2.html") 
-onload=()=>{
-  
-  alert("load ")
-}
-
-
-
   XRequest.host = "http://localhost:12345/XRequest"
 
 
   XRequest(".test.js", function (e, error){
-    
-    alert("done")
     document.body.innerHTML+= e
-    
-  }, 1)
+  }, true)
 </script>
-<script>alert("ss")</script>
+
 <h1>3</h1>
 
 </body>
