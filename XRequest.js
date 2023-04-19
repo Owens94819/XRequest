@@ -8,9 +8,9 @@ function XRequest(url, foo, blk) {
   
   url=(XRequest.script.src=url,XRequest.script.src)
   url= XRequest.host + "?id=" + id + "&src=" + url;
-  //location.href=url
+  
   if (XRequest.useImport) {
-   // import(url)
+    import(url);
   } else {
   if (!document.currentScript||document.readyState === "complete") {
     s = document.createElement("script");
@@ -57,8 +57,10 @@ XRequest.resId = 0;
 XRequest.host = "https://x.cyclic.app/XRequest";
 
 /*
+
 try {
   eval("var import;")
 } catch (e) {
   XRequest.useImport=true;
-}*/
+}
+*/
