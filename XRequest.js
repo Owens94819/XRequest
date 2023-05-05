@@ -31,7 +31,7 @@ function XRequest(url, foo, blk) {
   s.onerror = function () {
     XRequest.resId--;
     s.remove();
-    foo && XRequest.res[id][2].foo("",delete XRequest.res[id][2].foo);
+    foo && XRequest.res[id][1].foo("",delete XRequest.res[id][1].foo);
     delete XRequest.res[id];
   };
   }
@@ -46,7 +46,7 @@ function XRequest(url, foo, blk) {
     }
   }];
   
-  return XRequest.res[id][2]
+  return XRequest.res[id][1]
 }
 
 XRequest.script=document.createElement("script")

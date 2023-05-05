@@ -14,10 +14,11 @@
 
 <script>
 
-  XRequest.host = "http://localhost:12345/XRequest"
+  XRequest.xhost = "http://localhost:12345/XRequest"
 
 
-  XRequest(".test.js", function (e, error){
+  XRequest("https://google.com"||".test.js", function (e, error){
+   console.log(arguments)
     document.body.innerHTML+= e
   }, true)
 </script>
